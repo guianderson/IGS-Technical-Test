@@ -22,7 +22,11 @@ python manage.py runserver
 Isso iniciará o servidor de desenvolvimento em http://127.0.0.1:8000/. A partir daí, você pode acessar a página web do projeto e utilizar a API
 
 ## Acesso ao painel administrativo
-Acesse a rota http://127.0.0.1:8000/admin/ com o usuário admin e a senha 123 para acessar o painel administrativo do projeto.
+Para acessar o painel administrativo do projeto, é necessário criar um superusuário. Para isso, execute o seguinte comando:
+```bash
+python manage.py createsuperuser
+```
+Isso solicitará um nome de usuário, email e senha. Após criar o superusuário, você pode acessar o painel administrativo em  http://127.0.0.1:8000/admin/.
 
 ## API
 A API do projeto é composta por duas rotas para gerenciar departamentos e funcionários.
