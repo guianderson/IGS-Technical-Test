@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    {% if request.path == '/employee-form/' %}
+    <title>Adicionar Funcionários</title>
+    {% else %}
+    <title>Lista de Funcionários</title>
+    {% endif %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        .form-container {
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container form-container">      
+        {% if request.path == '/employee-form/' %}
+        <div class="jumbotron">
+            <h1>Adicionar Funcionários</h1>
+        </div>
+
+        <a href="/" id="add-employee-btn" class="btn btn-primary pull-right">Lista de Funcionários</a>
+        
+        <div style="margin-top: 8rem;">
+        <form id="add-employee-form" action="{% url 'add_employee' %}" method="post" class="form-background" style="margin-top: 30px;">
+            {% csrf_token %}
+            <div class="form-group">
+            <label for="employee_name" class="control-label"><i class="bi bi-person"></i> Nome do Funcionário:</label>
+            <input type="text" name="employee_name" id="employee_name" class="form-control form-control-lg" required/>
+            </div>
+            <div class="form-group">
+            <label for="employee_email" class="control-label"><i class="bi bi-envelope"></i> Email:</label>
+            <input type="email" name="employee_email" id="employee_email" class="form-control form-control-lg" required/>
+            </div>
+            <div class="form-group">
+            <label for="employee_department">Departamentos</label>
+            <select name="employee_department" id="employee_department" class="form-control" required>
+                <option value="">Selecione um departamento</option>
+                {% for department in departments %}
+                <option value="{{department.id}}">{{department.name}}</option>
+                {% endfor %}
+            </select>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="bi bi-plus"></i>Adiconar Funcionário</button>
+        </form></div>
+        {% else %}
+        <div class="jumbotron">
+            <h1>Lista de Funcionários</h1>
+        </div>
+        
+        <a href="/employee-form" id="add-employee-btn" class="btn btn-primary pull-right">Adicionar Funcionário</a>
+        <a href="/department" class="btn btn-info pull-left">Lista de Departamentos</a>
+        
+        <div class="form-container">
+            <table class="table table-striped table-bordered" style="margin-top: 30px;">
+                <thead>
+                <tr>
+                    <th>Funcionários</th>
+                    <th>E-mail</th>
+                    <th>Departamento</th>
+                    <th>Remover</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.name }}</td>
+                    <td>{{ employee.department }}</td>
+                    <td>{{ employee.email }}</td>
+                    <td style="width: 80px;" class="text-center">
+                    <a href="{% url 'delete_employee' employee.id %}" class="btn btn-danger btn-xs">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+      </div>
+</body>
+</html>
+
+<style>
+.form-background {
+    background: #EEEEEE;
+    padding: 1.5rem;
+}
+</style>
