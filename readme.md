@@ -2,7 +2,6 @@
 Este é um projeto desenvolvido em Django como teste técnico para a empresa IGS. O objetivo do projeto é criar uma API e um site para gerenciar funcionários e departamentos de uma empresa.
 
 ## Como usar
-Para utilizar o IGS Employee Manager, é necessário ter o Python 3.8 ou superior e o Django 3.2 ou superior instalados em sua máquina.
 
 Para instalar as dependências do projeto, execute o seguinte comando:
 ```bash
@@ -27,6 +26,10 @@ Para acessar o painel administrativo do projeto, é necessário criar um superus
 python manage.py createsuperuser
 ```
 Isso solicitará um nome de usuário, email e senha. Após criar o superusuário, você pode acessar o painel administrativo em  http://127.0.0.1:8000/admin/.
+
+## Observações
+O web site tem integração total com a API, portanto ao criar ou remover um funcionário ou departamento pelo site, a API também será afetada. O mesmo vale para a criação e remoção de funcionários e departamentos pela API.
+Se não houver nenhum funcionário ou departamento criado, o site irá exibir uma mensagem informando que não há nenhum funcionário ou departamento cadastrado em suas respectivas páginas.
 
 ## API
 A API do projeto é composta por duas rotas para gerenciar departamentos e funcionários.
