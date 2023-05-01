@@ -31,7 +31,13 @@
                 </div>
             </div>
         </form>
+
+        {% if departments|length == 0 %}
+        <div class="alert alert-info" style="margin-top: 10px;">
+            <strong>Ainda não há departamentos cadastrados.</strong>
+        </div>
         
+        {% else %}
         <div class="form-container">
             <table class="table table-striped table-bordered">
                 <thead>
@@ -54,6 +60,8 @@
                 </tbody>
             </table>
         </div>
+
+        {% endif %}
     </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
